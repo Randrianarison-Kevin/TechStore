@@ -3,10 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -17,189 +16,100 @@ class Produit
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Product_name = null;
+    #[Assert\NotNull()]
+    private ?string $Nom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Product_Description = null;
+    #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank()]
+    private ?string $Description = null;
 
     #[ORM\Column]
-    private ?float $Product_price = null;
+    #[Assert\Positive]
+    private ?float $Prix = null;
 
-    #[ORM\Column]
-    private ?int $Product_quantity = null;
+    #[ORM\Column(nullable: true)]
+    #[Assert\PositiveOrZero]
+    private ?int $Quantite = null;
 
     #[ORM\Column(type: Types::BLOB)]
-    private $Product_image = null;
+    private $Image = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Product_creation_date = null;
-
-    #[ORM\ManyToOne(inversedBy: 'Order_product')]
-    private ?Commande $commande = null;
-
-    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'produits')]
-    private Collection $Categories;
-
-    #[ORM\ManyToOne(inversedBy: 'Produits_ajoutes')]
-    private ?Panier $panier = null;
-
-    #[ORM\ManyToMany(targetEntity: Panier::class, mappedBy: 'Add_product')]
-    private Collection $paniers;
-
-    public function __construct()
-    {
-        $this->Categories = new ArrayCollection();
-        $this->paniers = new ArrayCollection();
-    }
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getProductName(): ?string
+    public function getNom(): ?string
     {
-        return $this->Product_name;
+        return $this->Nom;
     }
 
-    public function setProductName(string $Product_name): self
+    public function setNom(string $Nom): self
     {
-        $this->Product_name = $Product_name;
+        $this->Nom = $Nom;
 
         return $this;
     }
 
-    public function getProductDescription(): ?string
+    public function getDescription(): ?string
     {
-        return $this->Product_Description;
+        return $this->Description;
     }
 
-    public function setProductDescription(string $Product_Description): self
+    public function setDescription(string $Description): self
     {
-        $this->Product_Description = $Product_Description;
+        $this->Description = $Description;
 
         return $this;
     }
 
-    public function getProductPrice(): ?float
+    public function getPrix(): ?float
     {
-        return $this->Product_price;
+        return $this->Prix;
     }
 
-    public function setProductPrice(float $Product_price): self
+    public function setPrix(float $Prix): self
     {
-        $this->Product_price = $Product_price;
+        $this->Prix = $Prix;
 
         return $this;
     }
 
-    public function getProductQuantity(): ?int
+    public function getQuantite(): ?int
     {
-        return $this->Product_quantity;
+        return $this->Quantite;
     }
 
-    public function setProductQuantity(int $Product_quantity): self
+    public function setQuantite(?int $Quantite): self
     {
-        $this->Product_quantity = $Product_quantity;
+        $this->Quantite = $Quantite;
 
         return $this;
     }
 
-    public function getProductImage()
+    public function getImage()
     {
-        return $this->Product_image;
+        return $this->Image;
     }
 
-    public function setProductImage($Product_image): self
+    public function setImage($Image): self
     {
-        $this->Product_image = $Product_image;
+        $this->Image = $Image;
 
         return $this;
     }
 
-    public function getProductCreationDate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->Product_creation_date;
+        return $this->createdAt;
     }
 
-    public function setProductCreationDate(\DateTimeInterface $Product_creation_date): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
-        $this->Product_creation_date = $Product_creation_date;
-
-        return $this;
-    }
-
-    public function getCommande(): ?Commande
-    {
-        return $this->commande;
-    }
-
-    public function setCommande(?Commande $commande): self
-    {
-        $this->commande = $commande;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Categorie>
-     */
-    public function getCategories(): Collection
-    {
-        return $this->Categories;
-    }
-
-    public function addCategory(Categorie $category): self
-    {
-        if (!$this->Categories->contains($category)) {
-            $this->Categories->add($category);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Categorie $category): self
-    {
-        $this->Categories->removeElement($category);
-
-        return $this;
-    }
-
-    public function getPanier(): ?Panier
-    {
-        return $this->panier;
-    }
-
-    public function setPanier(?Panier $panier): self
-    {
-        $this->panier = $panier;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Panier>
-     */
-    public function getPaniers(): Collection
-    {
-        return $this->paniers;
-    }
-
-    public function addPanier(Panier $panier): self
-    {
-        if (!$this->paniers->contains($panier)) {
-            $this->paniers->add($panier);
-            $panier->addAddProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removePanier(Panier $panier): self
-    {
-        if ($this->paniers->removeElement($panier)) {
-            $panier->removeAddProduct($this);
-        }
+        $this->createdAt = $createdAt;
 
         return $this;
     }
