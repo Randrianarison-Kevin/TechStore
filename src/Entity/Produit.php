@@ -3,11 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[Vich\Uploadable]
+
 class Produit
 {
     #[ORM\Id]
@@ -34,8 +39,17 @@ class Produit
     #[ORM\Column(type: Types::BLOB)]
     private $Image = null;
 
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'Image')]
+    private ?File $imageFile = null;
+
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -100,6 +114,16 @@ class Produit
         $this->Image = $Image;
 
         return $this;
+    }
+
+    public function setImageFile(?File $Image = null)
+    {
+        $this->imageFile =$Image;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
