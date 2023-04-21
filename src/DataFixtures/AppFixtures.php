@@ -13,7 +13,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        for($i=0; $i<100; $i++){
+        for($i=0; $i<10; $i++){
             $produit = new Produit();
             $produit->setNom('Nom' .$i)
                     ->setDescription('Description'.$i)

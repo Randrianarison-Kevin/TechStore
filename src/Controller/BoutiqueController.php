@@ -7,15 +7,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class BoutiqueController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    #[Route('/boutique', name: 'boutique')]
     public function index(ProduitRepository $produitRepository): Response
     {
-        $produit= $produitRepository->findAll();
-        
-        return $this->render('pages/home/index.html.twig', [
+        $produit= $produitRepository->find($id = 142);
+        return $this->render('pages/boutique/index.html.twig', [
             'Produits' =>$produit
+        
         ]);
     }
 }
