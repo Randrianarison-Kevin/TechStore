@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     {
         $produit= $produitRepository->findAll();
         
-        return $this->render('pages/home/index.html.twig', [
+        return $this->render('pages/index.html.twig', [
             'Produits' =>$produit
         ]);
     }

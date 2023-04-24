@@ -6,34 +6,95 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-                <link rel="stylesheet" href="css/styles.css">
+            <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+            <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+            <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+            <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+            <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+            <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+            <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+            <link rel="stylesheet" href="css/style.css" type="text/css">
+            <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"    rel="stylesheet">
+
         {% endblock %}
 
         {% block javascripts %}
-            <script src="js/scripts.js"></script>
+
+            <script src="js/jquery-3.3.1.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/jquery.nice-select.min.js"></script>
+            <script src="js/jquery.nicescroll.min.js"></script>
+            <script src="js/jquery.magnific-popup.min.js"></script>
+            <script src="js/jquery.countdown.min.js"></script>
+            <script src="js/jquery.slicknav.js"></script>
+            <script src="js/mixitup.min.js"></script>
+            <script src="js/owl.carousel.min.js"></script>
+            <script src="js/main.js"></script>
         {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand">TechStore</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{path('home')}}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{path('boutique')}}">Boutique</a></li>
-                    
-                </ul>
-                <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark ms-1 rounded-pill">0</span>
-                    </button>
-                </form>
+        <div id="preloder">
+        <div class="loader"></div>
+        </div>
+
+
+       <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>Expédition gratuite, garantie de retour ou de remboursement de 30 jours.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <a href="#">Deconnexion</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="{{path('home')}}"><img src="{{ asset('img/logo.png')}}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li ><a href="{{path('home')}}">Home</a></li>
+                            <li><a href="{{path('shop')}}">Shop</a></li>
+                            <li><a >Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="{{path('about')}}">About Us</a></li>
+                                    <li><a href="{{path('shop_details')}}">Shop Details</a></li>
+                                    <li><a href="{{path('shopping_cart')}}">Shopping Cart</a></li>
+                                    <li><a href="{{path('check_out')}}">Check Out</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{{path('blog')}}">Blog</a></li>
+                            <li><a href="{{path('contact')}}">Contacts</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                        <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                        <div class="price">$0.00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+ 
         {% block body %}{% endblock %}
     </body>
 </html>
