@@ -13,25 +13,15 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        for($i=0; $i<10; $i++){
+        for($i=0; $i<8; $i++){
             $produit = new Produit();
             $produit->setNom('Nom' .$i)
                     ->setDescription('Description'.$i)
                     ->setPrix(mt_rand(10000,100000))
                     ->setQuantite(mt_rand(0,100))
-                    ->setImage($faker->imageUrl());
+                    ->setImage('img/Image.jpg');
                 
-            $imagePath = $produit->getImageFile();        
             
-            if ($imagePath) {
-                $imageName = pathinfo($imagePath, PATHINFO_FILENAME);
-                $imageExtension = pathinfo($imagePath, PATHINFO_EXTENSION);
-                $newFileName = $imageName . '.' . $imageExtension;
-                $newFilePath = sys_get_temp_dir() . '/' . $newFileName;
-                copy($imagePath, $newFilePath);
-                $imageFile = new File($newFilePath);
-                $produit->setImageFile($imageFile);
-            }
             $manager->persist($produit);
         }
         $manager->flush();
