@@ -46,6 +46,10 @@ class Produit
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Produit')]
+    private ?Categories $categories = null;
+
+    
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -137,4 +141,17 @@ class Produit
 
         return $this;
     }
+
+    public function getCategories(): ?Categories
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Categories $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+    
 }
