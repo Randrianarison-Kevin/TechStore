@@ -24,7 +24,7 @@
             <div class="container">
     
                 <div class="row product__filter">
-            {% for Produit in Produits %}
+            {% for Produit in Produits|slice(0,8) %}
     
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         <div class="product__item">
