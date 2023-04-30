@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
-use App\Repository\CategoriesRepository;
+use App\Entity\Produit;
 use App\Repository\ProduitRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoriesRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ShopController extends AbstractController
 {
@@ -15,10 +17,21 @@ class ShopController extends AbstractController
     {
         $produit = $produitRepository->findAll();
         $categories= $categoriesRepository ->findAll();
+
         return $this->render('pages/shop.html.twig', [
             'Produits' => $produit,
-            'Categories' => $categories
+            'Categories' => $categories,
+        ]);
+    }
 
+    #[Route('/shopdetails/{id}', name: 'shop_details')]
+    public function details(Request $request, ProduitRepository $produitRepository): Response
+    {
+        $detailsId = $request -> attributes -> get('id');
+        $details = $produitRepository->find($detailsId);
+        
+        return $this->render('pages/shop-details.html.twig', [
+        'Details' => $details
         ]);
     }
 }
