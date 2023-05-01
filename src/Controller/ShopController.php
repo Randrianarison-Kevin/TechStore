@@ -30,7 +30,7 @@ class ShopController extends AbstractController
         $detailsId = $request -> attributes -> get('id');
         $details = $produitRepository->find($detailsId);
         
-        return $this->render('pages/shop-details.html.twig', [
+        return $this->render('pages/details.html.twig', [
         'Details' => $details
         ]);
     }
