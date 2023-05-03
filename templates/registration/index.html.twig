@@ -1,0 +1,11 @@
+<title>
+    {% block title %}Registration{% endblock %}
+</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+{% block body %}
+    <div class="container">
+        <h1>Formulaire d'inscription</h1>
+
+        {{form(form)}}
+    </div>
+{% endblock %}
