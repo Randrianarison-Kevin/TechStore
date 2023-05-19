@@ -54,15 +54,17 @@
                             
                         </ul>
                     </nav>
+                    
+                    
                 </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__nav__option ">
-                        <a href=" {{path('cart')}} "><img style = "height: 30px"src="img/icon/ajouter-au-panier.png" alt=""> </a>
-                        
-                    </div>
-                </div>
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                
+                    {% else %}
+
+                    <a href=" {{path('app_logout')}} " class= "text-light mt-4" style="font-size: 20px; " >Deconnexion</a>
+                    {% endif %}
+                
             </div>
-            <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>
     </header>
  
