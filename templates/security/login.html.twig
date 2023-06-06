@@ -1,9 +1,10 @@
- {% block stylesheets %}
-            <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-            
-            <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"    rel="stylesheet">
-
-        {% endblock %}
+<title>
+    {% block title %}Login{% endblock %}
+</title>
+{% block stylesheets %}
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"    rel="stylesheet">
+{% endblock %}
 
 
 {% block body %}
@@ -27,7 +28,7 @@
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <button class="btn btn-lg btn-dark mt-4" type="submit">
-            Se connecterapp_logout
+            Se connecter
         </button>
     </form>
     <a href=" {{path('app_register')}} "> Creer un compte</a>
