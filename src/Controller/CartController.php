@@ -16,7 +16,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class CartController extends AbstractController
 {
-
+    #[Route('/cart/Acheter', name: 'Acheter')]
+    public function Acheter()
+    {
+    
+        return $this ->redirectToRoute('cart');
+    
+    }
 
     #[Route('/cart', name: 'cart')]
     public function index(CartService $cartService): Response

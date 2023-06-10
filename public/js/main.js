@@ -39,17 +39,7 @@
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
-    //Search Switch
-    $('.search-switch').on('click', function () {
-        $('.search-model').fadeIn(400);
-    });
-
-    $('.search-close-switch').on('click', function () {
-        $('.search-model').fadeOut(400, function () {
-            $('#search-input').val('');
-        });
-    });
-
+   
     /*------------------
 		Navigation
 	--------------------*/
@@ -69,34 +59,7 @@
         $(this).prev().removeClass('active');
     });
 
-    //Canvas Menu
-    $(".canvas__open").on('click', function () {
-        $(".offcanvas-menu-wrapper").addClass("active");
-        $(".offcanvas-menu-overlay").addClass("active");
-    });
-
-    $(".offcanvas-menu-overlay").on('click', function () {
-        $(".offcanvas-menu-wrapper").removeClass("active");
-        $(".offcanvas-menu-overlay").removeClass("active");
-    });
-
-    /*-----------------------
-        Hero Slider
-    ------------------------*/
-    $(".hero__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: false,
-        nav: true,
-        navText: ["<span class='arrow_left'><span/>", "<span class='arrow_right'><span/>"],
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: false
-    });
-
+    
     /*--------------------------
         Select
     ----------------------------*/
