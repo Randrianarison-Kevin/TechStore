@@ -1,15 +1,23 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller; 
 
+use App\Entity\User;
 use App\Service\CartService;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class CartController extends AbstractController
 {
+
+
     #[Route('/cart', name: 'cart')]
     public function index(CartService $cartService): Response
     {
@@ -25,6 +33,7 @@ class CartController extends AbstractController
 
         return $this ->redirectToRoute('shop');
     }
+
     #[Route('/cart/{id}', name: 'add_cart')]
     public function addToCart(CartService $cartService, int $id):Response
     {
@@ -50,5 +59,7 @@ class CartController extends AbstractController
     }
 
     
+
+     
 
 }

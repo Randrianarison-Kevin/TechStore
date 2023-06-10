@@ -48,7 +48,7 @@
                                         <a href=" {{ path('add_cart', {id:Produit.id}) }} " class="add-cart">+ Add To Cart</a>
                                        
                                         
-                                        <h5> {{Produit.Prix}} Ar </h5>
+                                        <h5> {{Produit.Prix|number_format(0,',', '.' ) }} Ar </h5>
                                          
                                     </div>
                                     <a href=" {{path('shop_details', {'id': Produit.id} )  }} ">Details</a>

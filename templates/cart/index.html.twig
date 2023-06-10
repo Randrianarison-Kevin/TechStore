@@ -21,8 +21,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {% set Prix = null %}
+                        {% set Total = null %}
                         {% for item in cart %}
+                        {% set Total = Total + (item.Produit.Prix * item.quantity) %}
+                        
                         <tr>
                                     <td class = "product__cart__item">
                                         <div class = "product__cart__item__pic">
@@ -30,7 +32,7 @@
                                         </div>
                                         <div class="product__cart__item__text">
                                             <h6> {{ item.Produit.Nom }} </h6>
-                                            <h5>  {{ item.Produit.Prix }} Ar </h5>
+                                            <h5>  {{ item.Produit.Prix|number_format(0,',', '.' ) }} Ar </h5>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
@@ -47,7 +49,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price"> {{( item.Produit.Prix * item.quantity )}} Ar </td>
+                                    <td class="cart__price"> {{( item.Produit.Prix * item.quantity )|number_format(0,',', '.' ) }} Ar </td>
                                     <td class="cart__close">
                                         <a href=" {{ path('remove_cart', {id: item.Produit.id}) }} ">
                                             <i class="fa fa-close"></i>
@@ -64,6 +66,7 @@
                 {% else %}
                     <h1>panier vide</h1>
                 {% endif %}
+                    
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
@@ -75,7 +78,17 @@
                 </div>       
             </div>
 
-        </div>    
+            <div class="col-lg-4">
+                <div class="cart__total">
+                    <h6>Cart total</h6>
+                    <ul>
+                        <li>Total <span style="color:black;"> {{Total|number_format(0,',', '.' ) }} Ar</span></li>
+                    </ul>
+                    <a href=" {{ path('Email', {'value':Total}) }} " class="primary-btn">Acheter</a>
+                </div>
+            </div> 
+        </div>
+                       
     </div>    
 </section>
 {% endblock %}

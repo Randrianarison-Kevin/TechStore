@@ -21,7 +21,7 @@
                         <div class="product__details__text">
                             <h4> {{Details.Nom}} </h4>
                             
-                            <h3> {{Details.Prix}} Ar </h3>
+                            <h3> {{Details.Prix|number_format(0,',', '.' ) }} Ar </h3>
                             <p> {{Details.Description}} </p>
                             
                             <div class="product__details__cart__option">
